@@ -59,4 +59,4 @@ void lietkeSK2(su_kien sk[], int n) {
         }
     }
 }
-// abcdefgh
+// cop vo roi nhan commit change o duoi la dc
