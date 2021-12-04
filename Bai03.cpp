@@ -26,6 +26,10 @@ void xuatSuKien(int i); // in ra su kien sk[i]
 void xuatQuanTrong(int doquantrong); // chuyen doquantrong {0,1,2,3} -> {k quan trong,hoi quan trong , kha quan trong,rat quan trong}, dung switch
 void lietkeSK1(int a); // cac su kien kha quan trong va rat quan trong
 void lietkeSK2(int b);  // cac su kien dien ra vao buoi sang 4h-11h
+void TinhThoiGian(su_kien sk[],int sosukien) ; // tinh so phut tu thoi diem bat ki 
+void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ; // Sap xep su kien theo thu tu thoi gian //
+void XoaSuKien(su_kien sk[], int& sosukien, int p) ; // xoa 1 su kien bat ki //
+void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien); // xoa cac su kien khong quan trong //
 
 // Khai báo biến và mảng
 su_kien sk[MAX];
@@ -121,3 +125,44 @@ void lietkeSK2(int b) {
     }
 }
 // cop vo roi nhan commit change o duoi la dc
+// Hàm đổi thời điểm ra phút //
+void TinhThoiGian(su_kien sk[],int sosukien) 
+{
+    int s[100]; // Mảng s chứa số phút tương ứng của từng thời điểm //
+    for (int i=0; i<sosukien; i++)
+    {
+        s[i]= (sk[i].thoidiem.nam*12*43200 + sk[i].thoidiem.thang*43200 + sk[i].thoidiem.ngay*1440 + sk[i].thoidiem.gio*60 + sk[i].thoidiem.phut);
+    }
+}
+// Hàm sắp xếp sự kiện theo thứ tự thời gian //
+void SapXepSuKien(su_kien sk[], int sosukien, int s[]) 
+{
+    for (int i=0; i<sosukien-1; i++)
+        for (int j=1+i; j<sosukien; j++)
+        {
+            if (s[i]>s[j])
+            {
+                su_kien temp = sk[i];
+                sk[i]= sk[j];
+                sk[j]= temp;
+            }
+        }
+}
+// Hàm huỷ sự kiện, p là vị trí cần huỷ //
+void XoaSuKien(su_kien sk[], int& sosukien, int p) 
+{
+    for (int i=p; i<sosukien; i++)
+        sk[i]=sk[i+1];
+    sosukien--;             // số sự kiến giảm xuống 1, vì ta đã xoá đi 1 sự kiện//
+}
+void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien)
+{
+    for (int i=0; i<sosukien; i++)
+    {
+        if (sk[i].doquantrong == 0)
+        {
+            XoaSuKien(sk, sosukien, i);
+        }
+    }
+}
+
