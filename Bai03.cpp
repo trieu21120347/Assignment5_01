@@ -34,7 +34,7 @@ int main() {
     nhapSuKien(sosukien);
 }
 
-// Hàm
+// Ham nhap su kien
 void nhapSuKien(int& sosukien){
     cout<< "Nhap so su kien can nhap: ";
     cin >> sosukien;
