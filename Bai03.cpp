@@ -59,4 +59,4 @@ void lietkeSK2(su_kien sk[], int n) {
         }
     }
 }
-// abcde
+// abcdefgh
