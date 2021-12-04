@@ -26,6 +26,10 @@ void xuatSuKien(int i); // in ra su kien sk[i]
 void xuatQuanTrong(int doquantrong); // chuyen doquantrong {0,1,2,3} -> {k quan trong,hoi quan trong , kha quan trong,rat quan trong}, dung switch
 void lietkeSK1(int a); // cac su kien kha quan trong va rat quan trong
 void lietkeSK2(int b);  // cac su kien dien ra vao buoi sang 4h-11h
+void TinhThoiGian(su_kien sk[],int sosukien) ;
+void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ;
+void XoaSuKien(su_kien sk[], int& sosukien, int p) ;
+void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
 
 // Khai báo biến và mảng
 su_kien sk[MAX];
