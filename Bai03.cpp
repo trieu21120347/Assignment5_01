@@ -36,8 +36,12 @@ void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ;
 void XoaSuKien(su_kien sk[], int& sosukien, int p) ;
 void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
 
-// Xac dinh mot su kien rat qua trong khi biet thoi diem
-bool sk_ratquantrong(int sosukien);
+// Xac dinh mot su kien rat quan trong khi biet thoi diem
+void sk_ratquantrong(int i, int sosukien);
+void nhapthoidiem(int i);
+int SoNgayTrongThang(int month);
+bool LaNgayHopLe(int ngay, int thang, int nam);
+
 
 // Khai báo biến và mảng
 su_kien sk[MAX];
@@ -59,26 +63,7 @@ void nhapSuKien(int& sosukien) {
 }
 void thaySuKien(int i) {
     cout << "Nhap thoi diem (ngay/thang/nam/gio/phut): "<<endl;
-    do {
-        cout << "Nhap ngay: ";
-        cin >> sk[i].thoidiem.ngay;
-    } while (sk[i].thoidiem.ngay < 0 || sk[i].thoidiem.ngay>31);
-    do {
-        cout << "Nhap thang: ";
-        cin >> sk[i].thoidiem.thang;
-    } while (sk[i].thoidiem.thang < 1 || sk[i].thoidiem.thang>12);
-    do {
-        cout << "Nhap nam (2021/2022): ";
-        cin >> sk[i].thoidiem.nam;
-    } while (sk[i].thoidiem.nam != 2021 && sk[i].thoidiem.nam != 2022);
-    do {
-        cout << "Nhap gio: ";
-        cin >> sk[i].thoidiem.gio;
-    } while (sk[i].thoidiem.gio < 0 || sk[i].thoidiem.gio>23);
-    do {
-        cout << "Nhap phut: ";
-        cin >> sk[i].thoidiem.phut;
-    } while (sk[i].thoidiem.phut < 0 || sk[i].thoidiem.phut>59);
+    nhapthoidiem(i);
     cout << "Nhap ten su kien: ";
     cin >> sk[i].ten;
     do {
@@ -172,3 +157,49 @@ void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien)
     }
 }
 
+void sk_ratquantrong(int i, int sosukien) {
+    nhapthoidiem(i);
+    for (int j = i + 1; j < sosukien; j++) {
+        if (sk[j].doquantrong == 3)
+            xuatSuKien(i);
+    }
+}
+void nhapthoidiem(int i) {
+    do {
+        cin >> sk[i].thoidiem.ngay;
+        cin >> sk[i].thoidiem.thang;
+        cin >> sk[i].thoidiem.nam;
+    }  while (LaNgayHopLe(sk[i].thoidiem.ngay, sk[i].thoidiem.thang, sk[i].thoidiem.nam) == false);
+    do {
+        cin >> sk[i].thoidiem.gio;
+        cin >> sk[i].thoidiem.phut;
+    } while (sk[i].thoidiem.gio < 0 || sk[i].thoidiem.gio>23);
+    do {
+        cin >> sk[i].thoidiem.phut;
+    } while (sk[i].thoidiem.phut < 0 || sk[i].thoidiem.phut>59);
+}
+// Ham tim so ngay toi da cua moi thang
+int SoNgayTrongThang(int month) {
+    switch (month) {
+        // Thang 2 cua nam 2021/2022 co 28 ngay
+        case 2:
+            return 28;
+        // Cac thang 4, 6, 9, 11 co 30 ngay
+        case 4: case 6: case 9: case 11: 
+            return 30;
+        // Cac thang 1, 3, 5, 7, 8, 10, 12 co 31 ngay
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:   
+            return 31;
+    }
+}
+// Ham kiem tra xem du lieu nhap vao co hop le hay khong
+bool LaNgayHopLe(int ngay, int thang, int nam) {    
+    if (0 < ngay && ngay <= SoNgayTrongThang(thang)) {
+        if (nam > 0 && (0 < thang && thang <= 12)) 
+            return true;
+        else
+            return false;
+    }
+    else 
+        return false;
+}
