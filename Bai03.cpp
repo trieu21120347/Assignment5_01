@@ -51,7 +51,7 @@ void lietkeSK1(su_kien sk[], int n){
         }
     }
 }
-// abc
+// Ham liet ke 2
 void lietkeSK2(su_kien sk[], int n) {
     for (int i = 0; i < n; i++) {
         if (sk[i].thoidiem.gio >= 4 && sk[i].thoidiem.gio < 11) {
