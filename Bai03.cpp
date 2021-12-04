@@ -27,6 +27,7 @@ void xuatSuKien(int i); // in ra su kien sk[i]
 void xuatQuanTrong(int doquantrong); // chuyen doquantrong {0,1,2,3} -> {k quan trong,hoi quan trong , kha quan trong,rat quan trong}, dung switch
 void lietkeSK1(int a); // cac su kien kha quan trong va rat quan trong
 void lietkeSK2(int b);  // cac su kien dien ra vao buoi sang 4h-11h
+void suaMucDoQuanTrong(int i);
 void sk_ratquantrong(int i, int sosukien); // Xac dinh mot su kien rat quan trong khi biet thoi diem
 void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ;
 void XoaSuKien(su_kien sk[], int& sosukien, int p) ;
@@ -195,4 +196,11 @@ bool LaNgayHopLe(int ngay, int thang, int nam) {
     }
     else 
         return false;
+}
+
+void suaMucDoQuanTrong(int i) {
+    cout << "Chon thoi diem muon sua muc do quan trong: ";
+    cin >> i;
+    cout << "Chon muc do quan trong muon sua: ";
+    cin >> sk[i].doquantrong;
 }
