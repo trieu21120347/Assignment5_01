@@ -125,7 +125,7 @@ void lietkeSK2(int b) {
     }
 }
 
-// Hàm đổi thời điểm ra phút //
+// Hàm đổi thời điểm ra phút
 void TinhThoiGian(su_kien sk[],int sosukien) 
 {
     int s[100]; // Mảng s chứa số phút tương ứng của từng thời điểm //
@@ -134,7 +134,7 @@ void TinhThoiGian(su_kien sk[],int sosukien)
         s[i]= (sk[i].thoidiem.nam*12*43200 + sk[i].thoidiem.thang*43200 + sk[i].thoidiem.ngay*1440 + sk[i].thoidiem.gio*60 + sk[i].thoidiem.phut);
     }
 }
-// Hàm sắp xếp sự kiện theo thứ tự thời gian //
+// Hàm sắp xếp sự kiện theo thứ tự thời gian
 void SapXepSuKien(su_kien sk[], int sosukien, int s[]) 
 {
     for (int i=0; i<sosukien-1; i++)
