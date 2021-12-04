@@ -120,4 +120,4 @@ void lietkeSK2(int b) {
         }
     }
 }
-// cop vo roi nhan commit change o duoi la dc
+// cop r commit
