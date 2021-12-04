@@ -2,7 +2,7 @@
 //  + thoi_diem (mot moc ngay/thang/nam/gio/phut trong nam 2021 va 2020)
 //  + ten su kien
 //  + do quan trong (4 muc: khong quan trong, co chut quan trong, kha quan trong, rat quan trong)
-#include<iostream>
+#include <iostream>
 #define MAX 1000
 using namespace std;
 
@@ -26,7 +26,7 @@ void xuatSuKien(int i); // in ra su kien sk[i]
 void xuatQuanTrong(int doquantrong); // chuyen doquantrong {0,1,2,3} -> {k quan trong,hoi quan trong , kha quan trong,rat quan trong}, dung switch
 void lietkeSK1(int a); // cac su kien kha quan trong va rat quan trong
 void lietkeSK2(int b);  // cac su kien dien ra vao buoi sang 4h-11h
-void TinhThoiGian(su_kien sk[],int sosukien) ;
+void TinhThoiGian(su_kien sk[],int sosukien, int s[]) ;
 void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ;
 void XoaSuKien(su_kien sk[], int& sosukien, int p) ;
 void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
@@ -34,13 +34,10 @@ void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
 // Khai báo biến và mảng
 su_kien sk[MAX];
 int sosukien;
+int s[100];
 
 int main() {
-    nhapSuKien(sosukien);
-    cout << endl;
-    lietkeSK1(sosukien);
-    cout << endl;
-    lietkeSK2(sosukien);
+    
 }
 
 // Ham nhap su kien
@@ -125,16 +122,16 @@ void lietkeSK2(int b) {
     }
 }
 
-// Hàm đổi thời điểm ra phút
-void TinhThoiGian(su_kien sk[],int sosukien) 
+// Hàm đổi thời điểm ra phút //
+void TinhThoiGian(su_kien sk[],int sosukien, int s[]) 
 {
-    int s[100]; // Mảng s chứa số phút tương ứng của từng thời điểm //
+
     for (int i=0; i<sosukien; i++)
     {
         s[i]= (sk[i].thoidiem.nam*12*43200 + sk[i].thoidiem.thang*43200 + sk[i].thoidiem.ngay*1440 + sk[i].thoidiem.gio*60 + sk[i].thoidiem.phut);
     }
 }
-// Hàm sắp xếp sự kiện theo thứ tự thời gian
+// Hàm sắp xếp sự kiện theo thứ tự thời gian //
 void SapXepSuKien(su_kien sk[], int sosukien, int s[]) 
 {
     for (int i=0; i<sosukien-1; i++)
