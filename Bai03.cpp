@@ -7,16 +7,11 @@
 using namespace std;
 
 struct thoi_diem {
-    int ngay; 
-    // 0< x <= 31 
+    int ngay;  
     int thang; 
-    //0<x<=12
     int nam;  
-    // 2021<=x<=2022
     int gio;   
-    // 0<= x <= 23 
     int phut;   
-    // 0<= x <= 59
 };
 
 struct su_kien {
