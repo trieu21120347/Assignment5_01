@@ -25,22 +25,20 @@ struct su_kien {
     int doquantrong;
 };
 // Khai bao prototype ham
+void nhapthoidiem(int i);
 void nhapSuKien(int& sosukien);
 void thaySuKien(int i); // sua su kien sk[i]
 void xuatSuKien(int i); // in ra su kien sk[i]
 void xuatQuanTrong(int doquantrong); // chuyen doquantrong {0,1,2,3} -> {k quan trong,hoi quan trong , kha quan trong,rat quan trong}, dung switch
 void lietkeSK1(int a); // cac su kien kha quan trong va rat quan trong
 void lietkeSK2(int b);  // cac su kien dien ra vao buoi sang 4h-11h
-void TinhThoiGian(su_kien sk[],int sosukien, int s[]) ;
+void sk_ratquantrong(int i, int sosukien); // Xac dinh mot su kien rat quan trong khi biet thoi diem
 void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ;
 void XoaSuKien(su_kien sk[], int& sosukien, int p) ;
 void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
-
-// Xac dinh mot su kien rat quan trong khi biet thoi diem
-void sk_ratquantrong(int i, int sosukien);
-void nhapthoidiem(int i);
 int SoNgayTrongThang(int month);
 bool LaNgayHopLe(int ngay, int thang, int nam);
+void TinhThoiGian(su_kien sk[],int sosukien, int s[]) ;
 
 
 // Khai báo biến và mảng
