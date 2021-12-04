@@ -7,11 +7,16 @@
 using namespace std;
 
 struct thoi_diem {
-    int ngay; // 0< x <= 31 
-    int thang; //0<x<=12
-    int nam;  // 2021<=x<=2022
-    int gio;   // 0<= x <= 23 
-    int phut;   // 0<= x <= 59
+    int ngay; 
+    // 0< x <= 31 
+    int thang; 
+    //0<x<=12
+    int nam;  
+    // 2021<=x<=2022
+    int gio;   
+    // 0<= x <= 23 
+    int phut;   
+    // 0<= x <= 59
 };
 
 struct su_kien {
@@ -31,9 +36,12 @@ void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ;
 void XoaSuKien(su_kien sk[], int& sosukien, int p) ;
 void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
 
+// Xac dinh mot su kien rat qua trong khi biet thoi diem
+bool sk_ratquantrong(int sosukien);
+
 // Khai báo biến và mảng
 su_kien sk[MAX];
-int sosukien;
+// int sosukien;
 int s[100];
 
 int main() {
@@ -122,7 +130,7 @@ void lietkeSK2(int b) {
     }
 }
 
-// Hàm đổi thời điểm ra phút //
+// Ham doi thoi gian ra phut
 void TinhThoiGian(su_kien sk[],int sosukien, int s[]) 
 {
 
@@ -131,7 +139,7 @@ void TinhThoiGian(su_kien sk[],int sosukien, int s[])
         s[i]= (sk[i].thoidiem.nam*12*43200 + sk[i].thoidiem.thang*43200 + sk[i].thoidiem.ngay*1440 + sk[i].thoidiem.gio*60 + sk[i].thoidiem.phut);
     }
 }
-// Hàm sắp xếp sự kiện theo thứ tự thời gian //
+// Ham sap xep su kien theo thu tu thoi gian
 void SapXepSuKien(su_kien sk[], int sosukien, int s[]) 
 {
     for (int i=0; i<sosukien-1; i++)
@@ -145,12 +153,13 @@ void SapXepSuKien(su_kien sk[], int sosukien, int s[])
             }
         }
 }
-// Hàm huỷ sự kiện, p là vị trí cần huỷ //
+// Ham huy su kien, p la vi tri can huy
 void XoaSuKien(su_kien sk[], int& sosukien, int p) 
 {
     for (int i=p; i<sosukien; i++)
         sk[i]=sk[i+1];
-    sosukien--;             // số sự kiến giảm xuống 1, vì ta đã xoá đi 1 sự kiện//
+    sosukien--;             
+    // So su kien giam xuong 1, vi ta da xoa di 1 su kien
 }
 void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien)
 {
@@ -162,3 +171,4 @@ void XoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien)
         }
     }
 }
+
