@@ -71,6 +71,7 @@ int main() {
         xuatSuKien(i);
         cout<<endl;
         }
+    system("pause");
     return 0;
 }
 
