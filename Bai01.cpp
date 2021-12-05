@@ -24,14 +24,18 @@ void swap(int& a, int& b); //Prototype ham hoan vi 2 so
 
 
 int main() {
+    // Nhap ca phan so cua day
     nhapPhanSo();
     cout << "Day phan so vua nhap la: ";
+    // Xuat ra cac phan so vua nhap
     xuatPhanSo();
     cout << endl;
+    // Xuat ra tong cac phan so vua nhap
     cout << "Tong cua day phan so vua nhap la: ";
     xuatTong();
+    // Sap xep theo cac phan so vua nhap theo day tang
     sapxepPhanSo();
-    cout << "Day phan so sau khi da sap xep la: ";
+    cout << "Day phan so sau khi da sap xep (theo chieu tang dan) la: ";
     xuatPhanSo();
     cout << endl;
     system("pause");
