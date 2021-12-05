@@ -24,7 +24,7 @@ su_kien sk[MAX];
 // khai bao mang tinh thoi gian
 int thoigian[100];
 // Khai bao prototype ham
-void nhapthoidiem(int i);
+void nhapthoidiem(int& i);
 void nhapSuKien(int& sosukien);
 void thaySuKien(int i); // sua su kien sk[i]
 void xuatSuKien(int i); // in ra su kien sk[i]
@@ -39,6 +39,7 @@ void xoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
 int SoNgayTrongThang(int month);
 bool LaNgayHopLe(int ngay, int thang, int nam);
 void TinhThoiGian(su_kien sk[],int sosukien, int s[]) ;
+int timThoiDiem(int sosukien);
 
 
 
@@ -138,7 +139,7 @@ void SuKienBuoiSang(int sosukien) {
 }
 
 // Ham doi thoi gian ra phut
-void TinhThoiGian(su_kien sk[],int sosukien, int s[]) 
+void TinhThoiGian(su_kien sk[],int sosukien, int thoigian[]) 
 {
 
     for (int i=0; i<sosukien; i++)
@@ -183,16 +184,31 @@ void suaMucDoQuanTrong(int i) {
     cout << "Chon muc do quan trong muon sua: ";
     cin >> sk[i].doquantrong;
 }
-
-void xuatSuKienRatQuanTrong(int sosukien) {
-    int i;
-    nhapthoidiem(i);
-    for (int j = i + 1; j < sosukien; j++) {
-        if (sk[j].doquantrong == 3)
-            xuatSuKien(i);
+int timThoiDiem(int sosukien) {
+    int temp;
+    nhapthoidiem(temp);
+    thoigian[temp] = (sk[temp].thoidiem.nam*12*43200 + sk[temp].thoidiem.thang*43200 + sk[temp].thoidiem.ngay*1440 + sk[temp].thoidiem.gio*60 + sk[temp].thoidiem.phut);
+    for (int i = 0; i < sosukien; i++) {
+        thoigian[i]= (sk[i].thoidiem.nam*12*43200 + sk[i].thoidiem.thang*43200 + sk[i].thoidiem.ngay*1440 + sk[i].thoidiem.gio*60 + sk[i].thoidiem.phut);
+        if (thoigian[temp] == thoigian[i])
+        {
+            return i;
+            break;
+        }
+        
     }
 }
-void nhapthoidiem(int i) {
+
+void xuatSuKienRatQuanTrong(int sosukien) {
+    int counter;
+    counter = timThoiDiem(sosukien);
+    cout << "Cac su kien rat quan trong sau su kien da nhap la: " << endl;
+    for (int j = counter + 1; j < sosukien; j++) {
+        if (sk[j].doquantrong == 3)
+            xuatSuKien(j);
+    }
+}
+void nhapthoidiem(int& i) {
     do {
         cout << "Nhap ngay: ";
         cin >> sk[i].thoidiem.ngay;
