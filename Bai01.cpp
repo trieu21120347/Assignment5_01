@@ -43,7 +43,7 @@ void nhapPhanSo() {
     cin >> SoPhanTu;
     } while (SoPhanTu <= 0 || SoPhanTu > MAX);
     for (int i = 0; i < SoPhanTu; i++) {
-        cout << "Nhap phan so ps[" << i << "]:" << endl;
+        cout << "Nhap phan so " << i + 1 << " (ps[" << i << "]):" << endl;
         cout << "Nhap vao tu: "; cin >> ps[i].tu;
         cout << "Nhap vao mau(!= 0): "; cin >> ps[i].mau;
         while (ps[i].mau == 0) {
@@ -56,7 +56,6 @@ void nhapPhanSo() {
 // Ham xuat ra day phan so
 void xuatPhanSo() {
     for (int i = 0; i < SoPhanTu; i++) {
-        // rutgon(ps[i].tu, ps[i].mau);
         cout << ps[i].tu << "/" << ps[i].mau << "  ";
     }
 }
