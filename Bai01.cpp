@@ -28,6 +28,7 @@ int main() {
     cout << "Day phan so vua nhap la: ";
     xuatPhanSo();
     cout << endl;
+    cout << "Tong cua day phan so vua nhap la: ";
     xuatTong();
     sapxepPhanSo();
     cout << "Day phan so sau khi da sap xep la: ";
@@ -73,7 +74,6 @@ DayPhanSo tongPhanSo() {
 // Ham xuat tong day phan so 
 void xuatTong() {
     DayPhanSo tongps = tongPhanSo();
-    cout << "Tong cua day phan so vua nhap la: ";
     cout << tongps.tu << "/" << tongps.mau << endl;
 }
 // Ham sap xep day phan so
