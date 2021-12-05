@@ -3,6 +3,7 @@
 //  + ten su kien
 //  + do quan trong (4 muc: khong quan trong, co chut quan trong, kha quan trong, rat quan trong)
 #include <iostream>
+#include <string>
 #define MAX 1000
 using namespace std;
 
@@ -16,7 +17,7 @@ struct thoi_diem {
 
 struct su_kien {
     thoi_diem thoidiem;
-    char ten;
+    string ten;
     int doquantrong;
 };
 // Khai báo biến và mảng
@@ -88,8 +89,8 @@ void nhapSuKien(int& sosukien) {
 void thaySuKien(int i) {
     cout << "Nhap thoi diem (ngay/thang/nam/gio/phut): "<<endl;
     nhapthoidiem(i);
-    cout << "Nhap ten su kien: ";
-    cin >> sk[i].ten;
+    cout << "Nhap ten su kien (vd: sinh_nhat): ";
+    cin>> sk[i].ten;
     do {
         cout << "Nhap muc do quan trong(0/1/2/3): ";
         cin >> sk[i].doquantrong;
