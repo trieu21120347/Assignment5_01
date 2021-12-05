@@ -3,20 +3,21 @@
 //  + ten su kien
 //  + do quan trong (4 muc: khong quan trong, co chut quan trong, kha quan trong, rat quan trong)
 #include <iostream>
+#include <string>
 #define MAX 1000
 using namespace std;
 
 struct thoi_diem {
-    int ngay;  
-    int thang; 
-    int nam;  
-    int gio;   
-    int phut;   
+    int ngay;
+    int thang;
+    int nam;
+    int gio;
+    int phut;
 };
 
 struct su_kien {
     thoi_diem thoidiem;
-    char ten;
+    string ten;
     int doquantrong;
 };
 // Khai báo biến và mảng
@@ -29,7 +30,7 @@ void nhapSuKien(int& sosukien);
 void thaySuKien(int i); // sua su kien sk[i]
 void xuatSuKien(int i); // in ra su kien sk[i]
 void xuatQuanTrong(int doquantrong); // chuyen doquantrong {0,1,2,3} -> {k quan trong,hoi quan trong , kha quan trong,rat quan trong}, dung switch
-void SuKienDoQuangTrongCao(int sosukien); // cac su kien kha quan trong va rat quan trong
+void SuKienDoQuanTrongCao(int sosukien); // cac su kien kha quan trong va rat quan trong
 void SuKienBuoiSang(int sosukien);  // cac su kien dien ra vao buoi sang 4h-11h
 void suaMucDoQuanTrong(int i);
 void xuatSuKienRatQuanTrong(int sosukien); // Xac dinh mot su kien rat quan trong khi biet thoi diem
@@ -46,10 +47,10 @@ int timThoiDiem(int sosukien);
 
 
 int main() {
-    int i, sosukien;
+     int i, sosukien;
     nhapSuKien(sosukien);
-    cout << "Liet ke cac su kien co do quan trong cao: " << endl;
-    SuKienDoQuangTrongCao(sosukien);
+    cout << "Liet ke cac su kien co do quan trong 'hoi quan trong' va 'rat quan trong' : " << endl;
+    SuKienDoQuanTrongCao(sosukien);
     cout << "Liet ke cac su kien dien ra vao buoi sang: " << endl;
     SuKienBuoiSang(sosukien);
     cout << "Chon thoi diem muon sua muc do quan trong(0 ung voi thoi diem dau tien): ";
@@ -86,10 +87,10 @@ void nhapSuKien(int& sosukien) {
     }
 }
 void thaySuKien(int i) {
-    cout << "Nhap thoi diem (ngay/thang/nam/gio/phut): "<<endl;
+    cout << "Nhap thoi diem (ngay/thang/nam/gio/phut): " << endl;
     nhapthoidiem(i);
-    cout << "Nhap ten su kien: ";
-    cin >> sk[i].ten;
+    cout << "Nhap ten su kien (vd: sinh_nhat): ";
+    cin>> sk[i].ten;
     do {
         cout << "Nhap muc do quan trong(0/1/2/3): ";
         cin >> sk[i].doquantrong;
@@ -123,7 +124,7 @@ void xuatQuanTrong(int doquantrong) {
     }
     }
 }
-void SuKienDoQuangTrongCao(int sosukien) {
+void SuKienDoQuanTrongCao(int sosukien) {
     for (int i = 0; i < sosukien; i++) {
         if (sk[i].doquantrong == 2 || sk[i].doquantrong == 3) {
             xuatSuKien(i);
