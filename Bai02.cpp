@@ -6,8 +6,21 @@ struct DaGiac
 	int socanh;//số cạnh
 	float length[MAX]; // chiều dài từng cạnh
 };
+// prototype ham nhap da giac
 void nhapDaGiac(DaGiac &a);
+// prototype ham tinh chu vi da giac
+float chuviDaGiac(DaGiac a);
 
+
+int main()
+{
+	DaGiac a;
+	nhapDaGiac(a);
+	cout << "Chu vi da giac do la:" << chuviDaGiac(a) << endl;
+	return 0;
+}
+
+// Ham nhap da giac
 void nhapDaGiac(DaGiac &a)
 {
     do {
@@ -22,8 +35,7 @@ void nhapDaGiac(DaGiac &a)
 		} while (a.length[i] <= 0);
 	}
 }
-float chuviDaGiac(DaGiac a);
-
+// Ham tinh chu vi da giac
 float chuviDaGiac(DaGiac a)
 {
 	float chuvi = 0;
@@ -32,12 +44,4 @@ float chuviDaGiac(DaGiac a)
 		chuvi += a.length[i];
 	}
 	return chuvi;
-}
-
-int main()
-{
-	DaGiac a;
-	nhapDaGiac(a);
-	cout << "Chu vi da giac do la:" << chuviDaGiac(a) << endl;
-	return 0;
 }
