@@ -25,22 +25,22 @@ su_kien sk[MAX];
 // khai bao mang tinh thoi gian
 int thoigian[100];
 // Khai bao prototype ham
-void nhapthoidiem(int& i);
-void nhapSuKien(int& sosukien);
+void nhapthoidiem(int& i); // Nhap mot thoi diem
+void nhapSuKien(int& sosukien); // Nhap su kien
 void thaySuKien(int i); // sua su kien sk[i]
 void xuatSuKien(int i); // in ra su kien sk[i]
 void xuatQuanTrong(int doquantrong); // chuyen doquantrong {0,1,2,3} -> {k quan trong,hoi quan trong , kha quan trong,rat quan trong}, dung switch
 void SuKienDoQuangTrongCao(int sosukien); // cac su kien kha quan trong va rat quan trong
 void SuKienBuoiSang(int sosukien);  // cac su kien dien ra vao buoi sang 4h-11h
-void suaMucDoQuanTrong(int i);
+void suaMucDoQuanTrong(int i); // Sua lai muc do quan trong cua 1 su kien
 void xuatSuKienRatQuanTrong(int sosukien); // Xac dinh mot su kien rat quan trong khi biet thoi diem
-void SapXepSuKien(su_kien sk[], int sosukien, int s[]) ;
-void xoaSuKien(su_kien sk[], int& sosukien, int p) ;
-void xoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien);
-int SoNgayTrongThang(int month);
-bool LaNgayHopLe(int ngay, int thang, int nam);
-void TinhThoiGian(su_kien sk[],int sosukien, int s[]) ;
-int timThoiDiem(int sosukien);
+void SapXepSuKien(su_kien sk[], int sosukien, int s[]); // Sap xep lai su kien
+void xoaSuKien(su_kien sk[], int& sosukien, int p); // Xoa 1 su kien
+void xoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien); // Xoa su kien khong quan trong
+int SoNgayTrongThang(int month); // Tim so ngay trong moi thang
+bool LaNgayHopLe(int ngay, int thang, int nam); // Kiem tra ngay nhap vao co hop le khong
+void TinhThoiGian(su_kien sk[],int sosukien, int s[]) ; // Tinh thoi gian (phut)
+int timThoiDiem(int sosukien); // Tim thoi diem da nhap
 
 
 
@@ -48,16 +48,22 @@ int timThoiDiem(int sosukien);
 
 int main() {
     int i, sosukien;
+    // Nhap vao su kien
     nhapSuKien(sosukien);
+    // Liet ke cac su kien co do quan trong cao
     cout << "Liet ke cac su kien co do quan trong cao: " << endl;
     SuKienDoQuangTrongCao(sosukien);
+    // Liet ke cac su kien dien ra vao buoi sang
     cout << "Liet ke cac su kien dien ra vao buoi sang: " << endl;
     SuKienBuoiSang(sosukien);
+    // Chon mot thoi diem va sua muc do quan trong cua thoi diem do
     cout << "Chon thoi diem muon sua muc do quan trong(0 ung voi thoi diem dau tien): ";
     cin >> i;
     suaMucDoQuanTrong(i);
+    // Liet ke cac su kien rat quan trong sau thoi diem da nhap
     cout << "Moi nhap thoi diem de xuat su kien rat quan trong sau thoi diem do: " << endl;
     xuatSuKienRatQuanTrong(sosukien);
+    // Sap xep lai cac su kien theo thu tu thoi gian
     TinhThoiGian(sk,sosukien,thoigian);
     SapXepSuKien(sk,sosukien,thoigian);
     cout<<"\nDanh sach su kien sau khi da sap xep la: \n";
@@ -66,6 +72,7 @@ int main() {
         xuatSuKien(i);
         cout<<endl;
         }
+    // Xoa nhung su kien khong quan trong
     xoaSuKienKhongQuanTrong(sk,sosukien);
     cout<<"\nDanh sach su kien sau khi xoa su kien khong quan trong: \n";
     for (int i=0; i<sosukien; i++)
@@ -96,6 +103,7 @@ void thaySuKien(int i) {
         cin >> sk[i].doquantrong;
     } while (sk[i].doquantrong < 0 || sk[i].doquantrong>3);
 }
+// Ham xuat ra nhung su kien
 void xuatSuKien(int i) {
     cout << " Ten su kien: " << sk[i].ten << endl;
     cout << " Thoi diem dien ra su kien: " << sk[i].thoidiem.ngay << " / " << sk[i].thoidiem.thang << " / " << sk[i].thoidiem.nam << ". Luc: " << sk[i].thoidiem.gio << " gio " << sk[i].thoidiem.phut<< " phut" << endl;
@@ -103,6 +111,7 @@ void xuatSuKien(int i) {
     xuatQuanTrong(sk[i].doquantrong);
     cout << endl;
 }
+// Ham xuat ra muc do quan trong ung voi tung so da nhap
 void xuatQuanTrong(int doquantrong) {
     switch (doquantrong)
     {
@@ -124,6 +133,7 @@ void xuatQuanTrong(int doquantrong) {
     }
     }
 }
+// Ham liet ke nhung su kien co do quan trong cao
 void SuKienDoQuangTrongCao(int sosukien) {
     for (int i = 0; i < sosukien; i++) {
         if (sk[i].doquantrong == 2 || sk[i].doquantrong == 3) {
@@ -131,6 +141,7 @@ void SuKienDoQuangTrongCao(int sosukien) {
         }
     }
 }
+// Ham liet ke nhung su kien dien ra vao buoi sang
 void SuKienBuoiSang(int sosukien) {
     for (int i = 0; i < sosukien; i++) {
         if (sk[i].thoidiem.gio >= 4 && sk[i].thoidiem.gio < 11) {
@@ -170,6 +181,7 @@ void xoaSuKien(su_kien sk[], int& sosukien, int p)
     sosukien--;             
     // So su kien giam xuong 1, vi ta da xoa di 1 su kien
 }
+// Ham xoa nhung su kien khong quan trong ra khoi mang
 void xoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien)
 {
     for (int i=0; i<sosukien; i++)
@@ -180,11 +192,12 @@ void xoaSuKienKhongQuanTrong(su_kien sk[], int &sosukien)
         }
     }
 }
-
+// Ham sua lai muc do quan trong cua 1 su kien
 void suaMucDoQuanTrong(int i) {
     cout << "Chon muc do quan trong muon sua: ";
     cin >> sk[i].doquantrong;
 }
+// Ham tra ve vi tri cua thoi diem da nhap
 int timThoiDiem(int sosukien) {
     int temp;
     nhapthoidiem(temp);
@@ -199,7 +212,7 @@ int timThoiDiem(int sosukien) {
         
     }
 }
-
+// Ham xuat ra nhung su kien rat quan trong sau thoi diem vua nhap
 void xuatSuKienRatQuanTrong(int sosukien) {
     int counter;
     counter = timThoiDiem(sosukien);
@@ -209,6 +222,7 @@ void xuatSuKienRatQuanTrong(int sosukien) {
             xuatSuKien(j);
     }
 }
+// Ham nhap vao thoi diem
 void nhapthoidiem(int& i) {
     do {
         cout << "Nhap ngay: ";
