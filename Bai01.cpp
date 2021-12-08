@@ -70,7 +70,6 @@ DayPhanSo tongPhanSo() {
     for (int i = 1; i < SoPhanTu; i++) {
         tong.tu = tong.tu * ps[i].mau + tong.mau * ps[i].tu;
         tong.mau = tong.mau * ps[i]. mau;
-        rutgon(tong.tu, tong.mau);
     }
     rutgon(tong.tu, tong.mau);
     return tong;
